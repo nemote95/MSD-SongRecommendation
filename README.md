@@ -30,7 +30,7 @@ In order to find the number of lines in each file, the following script was run:
 However, to ensure the number of lines in the compressed files such as metadata which includes the information about songs, dataframes was loaded and analysis_df.distinct().count() was run and received 999959 as a result which is less than the number of rows in triplets.
 
 
-##Data preprocessing
+## Data preprocessing
 
 First, it is required to filter the Taste Profile dataset to remove the mismatched songs. There are two types of mismatches: manually reported mismatches and mismatches detected by the system. To remove them, mismatches were loaded, joined to taste triplets and subtracted from the triplets. 
 Audio dataset includes attributes which define schemas for the audio features. To obtain the audio features dataframes, the attributes of each audio feature dataset were loaded and used to construct a stuctTypes and Schemas for them. Then, each feature dataset was loaded using the corresponding schema and appended in a dictionary which holds audio features dataframes. 
