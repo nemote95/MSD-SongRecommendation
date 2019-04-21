@@ -12,19 +12,25 @@ The tasteprofile directory contains the user-song play counts from the Taste Pro
 The audio directory contains audio features sets from the Music Information Retrieval research group at the Vienna University of Technology. The audio/attributes directory contains attributes names from the header of the ARFF, the audio/features directory contains the audio features themselves, and the audio/statistics directory contains additional track statistics.
 
 Firstly, I used the following bash script by Christina Wong to know the structure and data types and size of files.
+
 ```hdfs dfs -ls -R -h /data/msd | awk '{ if($2 == "-") print $8; else if($6 != "K" && $6 != "M") print $8, $5, "B"; else print $9,$5,$6;}' | sed -e "s/[^-][^\/]*\// |/g" -e "s/|\([^ ]\)/|-\1/" ```
+
 As a result, the audio features dataset has the largest size (approximately 12 GB). 
 The files in audio dataset are in “csv” format whereas files in genre and taste profile triplets are in “tsv” format and mismatches songs datasets are in “txt” format.
 Besides, some files such as statistics dataset are compressed as “gzip” files. 
 According to the structure of the dataset structure, each dataset is partitioned into 8 replications. By running the following script we can see the size of each partition is 134217728 bytes and the default level of parallelism is 8 ( using rdd_name.getNumPartitions() ).
 For this context, this level is sufficient but to change it, df.repartition(number_of_partiitions) should be called. 
+
 ```hdfs fsck /msd/tasteprofile/triplets.tsv -files –blocks ```
+
 In order to find the number of lines in each file, the following script was run: 
 
 ```for i in `hdfs dfs -ls -R /data/msd | awk '{print $8}'`; do echo $i ; hdfs dfs -cat $i | wc -l; ```
 
 However, to ensure the number of lines in the compressed files such as metadata which includes the information about songs, dataframes was loaded and analysis_df.distinct().count() was run and received 999959 as a result which is less than the number of rows in triplets.
 
+
 ##Data preprocessing
+
 First, it is required to filter the Taste Profile dataset to remove the mismatched songs. There are two types of mismatches: manually reported mismatches and mismatches detected by the system. To remove them, mismatches were loaded, joined to taste triplets and subtracted from the triplets. 
 Audio dataset includes attributes which define schemas for the audio features. To obtain the audio features dataframes, the attributes of each audio feature dataset were loaded and used to construct a stuctTypes and Schemas for them. Then, each feature dataset was loaded using the corresponding schema and appended in a dictionary which holds audio features dataframes. 
