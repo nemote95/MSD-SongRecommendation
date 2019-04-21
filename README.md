@@ -20,7 +20,9 @@ According to the structure of the dataset structure, each dataset is partitioned
 For this context, this level is sufficient but to change it, df.repartition(number_of_partiitions) should be called. 
 ```hdfs fsck /msd/tasteprofile/triplets.tsv -files –blocks ```
 In order to find the number of lines in each file, the following script was run: 
+
 ```for i in `hdfs dfs -ls -R /data/msd | awk '{print $8}'`; do echo $i ; hdfs dfs -cat $i | wc -l; ```
+
 However, to ensure the number of lines in the compressed files such as metadata which includes the information about songs, dataframes was loaded and analysis_df.distinct().count() was run and received 999959 as a result which is less than the number of rows in triplets.
 
 ##Data preprocessing
