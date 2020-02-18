@@ -11,7 +11,7 @@ Million Song Dataset (MSD) from studies on audio and textual data used in Spotif
 1. after looking at the statistic descriotion of the audio features, we removed highly correlated features top reduce the size of our feature set in [feature_analysis.py](/feature_analysis.py) .
 2. we then merged these features with the genere dataset. (note: the mismatches were also removed in this dataset)
 
-##Multi-class classification
+## Multi-class classification
 after converting the genres to numerical values. we took OneVsRest approach to classify the tracks into different generes. [Multiclass_classification.py](/Multiclass_classification.py)
 
 
