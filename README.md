@@ -15,7 +15,7 @@ Million Song Dataset (MSD) from studies on audio and textual data used in Spotif
 after converting the genres to numerical values. we took OneVsRest approach to classify the tracks into different generes. [Multiclass_classification.py](/Multiclass_classification.py)
 
 ## Song recommendation
-after analysing the trends and users activities, we took collaborative filtering method to find users with similar tastes.we used RankingMetrics to evaluate the performance of the recommander. we compared the top 5 recommendations with the ground truth (precision=0.946) as well as the average precision of the recommendations. 
+after analysing the trends and users activities, we took collaborative filtering (ASL) method to find users with similar tastes.we used RankingMetrics to evaluate the performance of the recommander. we compared the top 5 recommendations with the ground truth (precision=0.946) as well as the average precision of the recommendations. 
 
 ## future work
 It is noteworthy that ASL would not be suitable in some situations in streaming applications which user
