@@ -1,9 +1,12 @@
 # MSD-SongRecommendation
-A song recommandation system using sound features
-Million Song Dataset (MSD) from studies on audio and textual data used in Spotify.   
-this project includes tracks classifications based on audio features and a song recommender using Spark.
+A song recommandation engine using sound features
+Million Song Dataset (MSD) from studies on audio and textual data used in Spotify.This recommendation engine has two main stages: tracks classifications based on audio features and a song recommender using Spark machine learning libraries.
 
 ## Data preprocessing
+1. dataframes for each datasets is defined in [features_DataFrames.py] (https://github.com/nemote95/MSD-SongRecommendation/blob/master/feature_DataFrames.py) .
+2. mismatches in Taste Profile dataset are removed in [clean_tastes.py] (https://github.com/nemote95/MSD-SongRecommendation/blob/master/clean_tastes.py) . 
+3. Audio dataset includes attributes which define schemas for the audio features. this schemas are defined in [clean_tastes.py] (https://github.com/nemote95/MSD-SongRecommendation/blob/master/clean_tastes.py). 
 
-First, it is required to filter the Taste Profile dataset to remove the mismatched songs. There are two types of mismatches: manually reported mismatches and mismatches detected by the system. To remove them, mismatches were loaded, joined to taste triplets and subtracted from the triplets. 
-Audio dataset includes attributes which define schemas for the audio features. To obtain the audio features dataframes, the attributes of each audio feature dataset were loaded and used to construct a stuctTypes and Schemas for them in [clean_tastes.py] (https://github.com/nemote95/MSD-SongRecommendation/blob/master/clean_tastes.py). Then, each feature dataset was loaded using the corresponding schema and appended in a dictionary which holds audio features dataframes. 
+## Feture analysis [feature_analysis.py] (https://github.com/nemote95/MSD-SongRecommendation/blob/master/feature_analysis.py). 
+1. after looking at the statistic descriotion of the audio features, we removed highly correlated features top reduce the size of our feature set.
+2. we then merged these features with the genere dataset. (note: the mismatches were also removed in this dataset)
