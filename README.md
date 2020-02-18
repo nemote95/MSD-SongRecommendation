@@ -7,6 +7,6 @@ Million Song Dataset (MSD) from studies on audio and textual data used in Spotif
 2. mismatches in Taste Profile dataset are removed in [clean_tastes.py](/clean_tastes.py) . 
 3. Audio dataset includes attributes which define schemas for the audio features. this schemas are defined in [clean_tastes.py](/clean_tastes.py). 
 
-## Feture analysis [feature_analysis.py](/feature_analysis.py). 
-1. after looking at the statistic descriotion of the audio features, we removed highly correlated features top reduce the size of our feature set.
+## Feature analysis 
+1. after looking at the statistic descriotion of the audio features, we removed highly correlated features top reduce the size of our feature set in [feature_analysis.py](/feature_analysis.py) .
 2. we then merged these features with the genere dataset. (note: the mismatches were also removed in this dataset)
